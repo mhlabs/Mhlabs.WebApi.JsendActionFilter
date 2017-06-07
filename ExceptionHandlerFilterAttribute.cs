@@ -10,15 +10,13 @@ namespace Mhlabs.WebApi.JsendActionFilter
         public override void OnException(ExceptionContext context)
         {
             base.OnException(context);
-            if (context.HasJsendHeader())
-            {
-                var result =
-                    new ObjectResult(new {status = "error", message = context.Exception.Message})
-                    {
-                        StatusCode = (int?) HttpStatusCode.InternalServerError
-                    };
-                context.Result = result;                
-            }
+            if (!context.HasJSendHeader()) return;
+            var result =
+                new ObjectResult(new {status = "error", message = context.Exception.Message})
+                {
+                    StatusCode = (int?) HttpStatusCode.InternalServerError
+                };
+            context.Result = result;
         }
     }
 
