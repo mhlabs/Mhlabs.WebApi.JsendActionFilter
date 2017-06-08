@@ -12,6 +12,7 @@ namespace Mhlabs.WebApi.JsendActionFilter
 
             var exception = new Exception("Request Failed");
             exception.Data.Add("FailData", data);
+            throw exception;
         }
 
         public static void Fail(this Controller controller, string code = null, string message = null)
