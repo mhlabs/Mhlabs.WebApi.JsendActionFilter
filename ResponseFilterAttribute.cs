@@ -33,7 +33,7 @@ namespace Mhlabs.WebApi.JsendActionFilter
                 context.Result = new OkObjectResult(new {status = "fail", data = failExeption?.FailData});
                 context.ExceptionHandled = true;
             }
-            else
+            else if (context.Exception == null)
             {
                 ((ObjectResult)context.Result).Value =
                     new { status = "success", data = ((ObjectResult)context.Result).Value };
