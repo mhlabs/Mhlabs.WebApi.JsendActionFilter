@@ -5,9 +5,6 @@ namespace Mhlabs.WebApi.JsendActionFilter
 {
     internal class ResponseFilterAttribute : ActionFilterAttribute
     {
-        public string ResponseFormatHeader { get; internal set; } = "X-Response-Format";
-        public string JSendHeaderValue { get; internal set; } = "jsend";
-
         public ResponseFilterAttribute()
         {
         }
@@ -17,6 +14,9 @@ namespace Mhlabs.WebApi.JsendActionFilter
             ResponseFormatHeader = responseFormatHeader ?? ResponseFormatHeader;
             JSendHeaderValue = jSendHeaderValue ?? JSendHeaderValue;
         }
+
+        public string ResponseFormatHeader { get; internal set; } = "X-Response-Format";
+        public string JSendHeaderValue { get; internal set; } = "jsend";
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
@@ -35,10 +35,9 @@ namespace Mhlabs.WebApi.JsendActionFilter
             }
             else if (context.Exception == null)
             {
-                ((ObjectResult)context.Result).Value =
-                    new { status = "success", data = ((ObjectResult)context.Result).Value };
+                ((ObjectResult) context.Result).Value =
+                    new {status = "success", data = ((ObjectResult) context.Result).Value};
             }
         }
-
     }
 }

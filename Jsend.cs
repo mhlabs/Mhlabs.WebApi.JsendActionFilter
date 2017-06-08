@@ -8,9 +8,7 @@ namespace Mhlabs.WebApi.JsendActionFilter
         public static void Fail(this Controller controller, object data)
         {
             if (controller.ControllerContext.HasJSendHeader())
-            {
                 throw new JSendFailException(data);
-            }
 
             var exception = new Exception("Request Failed");
             exception.Data.Add("FailData", data);

@@ -18,5 +18,4 @@ namespace Mhlabs.WebApi.JsendActionFilter
             context.Result = result;
         }
     }
-
 }

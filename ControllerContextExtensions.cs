@@ -8,10 +8,11 @@ namespace Mhlabs.WebApi.JsendActionFilter
         public static bool HasJSendHeader(this ControllerContext controllerContext)
         {
             var filter =
-                (ResponseFilterAttribute)controllerContext.ActionDescriptor.FilterDescriptors
+                (ResponseFilterAttribute) controllerContext.ActionDescriptor.FilterDescriptors
                     .FirstOrDefault(fd => fd.Filter.GetType() == typeof(ResponseFilterAttribute)).Filter;
 
-            return filter != null && controllerContext.HttpContext.Request.Headers?[filter.ResponseFormatHeader].FirstOrDefault() == filter.JSendHeaderValue;
+            return filter != null && controllerContext.HttpContext.Request.Headers?[filter.ResponseFormatHeader]
+                       .FirstOrDefault() == filter.JSendHeaderValue;
         }
     }
 }
