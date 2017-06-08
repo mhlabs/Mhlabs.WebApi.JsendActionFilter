@@ -7,7 +7,7 @@ namespace Mhlabs.WebApi.JsendActionFilter
     {
         public static bool HasJSendHeader(this FilterContext context)
         {
-            var filter = context.Filters.First(f => f.GetType() == typeof(ResponseFilterAttribute)) as ResponseFilterAttribute;
+            var filter = context.Filters.FirstOrDefault(f => f.GetType() == typeof(ResponseFilterAttribute)) as ResponseFilterAttribute;
 
             return filter != null && context.HttpContext.Request.Headers?[filter.ResponseFormatHeader]
                        .FirstOrDefault() == filter.JSendHeaderValue;

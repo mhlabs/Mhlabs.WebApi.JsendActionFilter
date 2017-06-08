@@ -21,19 +21,22 @@ namespace Mhlabs.WebApi.JsendActionFilter
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             base.OnActionExecuted(context);
-            if (context.Exception == null && context.HasJSendHeader())
-            {
-                ((ObjectResult)context.Result).Value =
-                    new { status = "success", data = ((ObjectResult)context.Result).Value };
-            }
-            else if (context.Exception.GetType() == typeof(JSendFailException))
+
+            if (!context.HasJSendHeader()) return;
+
+            if (context.Exception != null && context.Exception.GetType() == typeof(JSendFailException))
             {
                 var failExeption = context.Exception as JSendFailException;
 
                 if (context.Result != null) return;
 
-                context.Result = new OkObjectResult(new { status = "fail", data = failExeption?.FailData });
+                context.Result = new OkObjectResult(new {status = "fail", data = failExeption?.FailData});
                 context.ExceptionHandled = true;
+            }
+            else
+            {
+                ((ObjectResult)context.Result).Value =
+                    new { status = "success", data = ((ObjectResult)context.Result).Value };
             }
         }
 
