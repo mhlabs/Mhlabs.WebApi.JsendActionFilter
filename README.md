@@ -1,5 +1,5 @@
 # Mhlabs.WebApi.JsendActionFilter
-Action filter for optionally wrapping a response in Jsend format
+Action filter for optionally wrapping a response in JSend format. See https://labs.omniti.com/labs/jsend.
 
 ```csharp
 services.AddMvc(s =>
