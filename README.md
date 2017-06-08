@@ -1,7 +1,7 @@
 # Mhlabs.WebApi.JsendActionFilter
 Action filter for optionally wrapping a response in Jsend format
 
-```
+```csharp
 services.AddMvc(s =>
 {
     s.AddJSendResponseFormat();
@@ -10,7 +10,7 @@ services.AddMvc(s =>
 
 Example usage:
 
-```
+```csharp
 [HttpGet]
 public async Task<DtoObject> Get(string id, CancellationToken cancellationToken)
 {
