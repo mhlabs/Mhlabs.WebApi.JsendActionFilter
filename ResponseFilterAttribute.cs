@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Mhlabs.WebApi.JsendActionFilter
 {
-    public class ResponseFilterAttribute : ActionFilterAttribute
+    internal class ResponseFilterAttribute : ActionFilterAttribute
     {
         public string ResponseFormatHeader { get; internal set; } = "X-Response-Format";
         public string JSendHeaderValue { get; internal set; } = "jsend";

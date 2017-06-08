@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Mhlabs.WebApi.JsendActionFilter
 {
-    public static class ControllerContextExtensions
+    internal static class ControllerContextExtensions
     {
         public static bool HasJSendHeader(this ControllerContext controllerContext)
         {

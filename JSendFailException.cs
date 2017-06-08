@@ -2,7 +2,7 @@ using System;
 
 namespace Mhlabs.WebApi.JsendActionFilter
 {
-    public class JSendFailException : Exception
+    internal class JSendFailException : Exception
     {
         private const string FailDataKey = "FailData";
 

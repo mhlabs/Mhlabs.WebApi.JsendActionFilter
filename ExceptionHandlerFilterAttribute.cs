@@ -1,11 +1,10 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Mhlabs.WebApi.JsendActionFilter
 {
-    public class HandleExcpetionFilterAttribute : ExceptionFilterAttribute
+    internal class HandleExcpetionFilterAttribute : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext context)
         {
