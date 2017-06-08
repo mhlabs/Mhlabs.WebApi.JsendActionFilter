@@ -4,7 +4,29 @@ Action filter for optionally wrapping a response in Jsend format
 ```
 services.AddMvc(s =>
 {
-    s.Filters.Add(new ResponseFilterAttribute());
-    s.Filters.Add(new HandleExcpetionFilterAttribute());
+    s.AddJSendResponseFormat();
 });
+```
+
+Example usage:
+
+```
+[HttpGet]
+public async Task<DtoObject> Get(string id, CancellationToken cancellationToken)
+{
+    if (string.IsNullOrEmpty(id))
+    {
+        this.Fail("INVALID_ID", "Id is invalid");
+    }
+
+    var dto = await _handler.GetObject(id, cancellationToken);
+
+    if (dto == null)
+    {
+        this.Fail("NOT_FOUND");
+    }
+
+    return dto;
+}
+
 ```
