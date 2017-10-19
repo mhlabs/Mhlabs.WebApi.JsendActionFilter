@@ -1,6 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
 
 namespace Mhlabs.WebApi.JsendActionFilter
 {
@@ -10,12 +12,13 @@ namespace Mhlabs.WebApi.JsendActionFilter
         {
             base.OnException(context);
             if (!context.HasJSendHeader()) return;
-            var result =
-                new ObjectResult(new {status = "error", message = context.Exception.Message})
-                {
-                    StatusCode = (int?) HttpStatusCode.InternalServerError
-                };
+            var result = new ObjectResult(new { status = "error", message = context.Exception.Message })
+            {
+                StatusCode = (int?)HttpStatusCode.InternalServerError
+            };
             context.Result = result;
+
+            Console.WriteLine($"[ERROR] Result: {JsonConvert.SerializeObject(result)} {Environment.NewLine} [Exception]: {context.Exception}");
         }
     }
 }
