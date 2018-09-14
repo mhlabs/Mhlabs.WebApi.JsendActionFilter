@@ -24,19 +24,28 @@ namespace Mhlabs.WebApi.JsendActionFilter
 
             if (!context.HasJSendHeader()) return;
 
+            var result = context.Result as OkObjectResult;
+            if (result != null && result.Value as JSendResponse != null)
+            {
+                // error response already set
+                return;
+            }
+
             if (context.Exception != null && context.Exception.GetType() == typeof(JSendFailException))
             {
                 var failExeption = context.Exception as JSendFailException;
 
                 if (context.Result != null) return;
 
-                context.Result = new OkObjectResult(new {status = "fail", data = failExeption?.FailData});
+                context.Result = new OkObjectResult(new { status = "fail", data = failExeption?.FailData });
                 context.ExceptionHandled = true;
             }
             else if (context.Exception == null)
             {
-                ((ObjectResult) context.Result).Value =
-                    new {status = "success", data = ((ObjectResult) context.Result).Value};
+                var objectResult = context.Result as ObjectResult;
+                if(objectResult == null) return;
+                objectResult.Value =
+                    new JSendResponse { Status = "success", Data = objectResult.Value};
             }
         }
     }
