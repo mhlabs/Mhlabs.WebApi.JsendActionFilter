@@ -23,19 +23,7 @@ namespace Mhlabs.WebApi.JsendActionFilter
 
         public static OkObjectResult Error(this Controller controller, FailReason data)
         {
-            JSendResponse response;
-
-            if (controller.ControllerContext.HasJSendHeader())
-            {
-                response = new JSendResponse { Status = "fail", Data = data };
-            }
-            else
-            {
-                var error = new Exception("Request Failed");
-                error.Data.Add("FailData", data);
-                response = new JSendResponse { Status = "fail", Data = error };
-            }
-
+            var response = new JSendResponse { Status = "fail", Data = data };
             Console.WriteLine($"[ERROR] JSendResponse: {JsonConvert.SerializeObject(response)} {Environment.NewLine}");
 
             return new OkObjectResult(response);
