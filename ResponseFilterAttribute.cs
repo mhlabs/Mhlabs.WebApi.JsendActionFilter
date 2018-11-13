@@ -1,5 +1,7 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
 
 namespace Mhlabs.WebApi.JsendActionFilter
 {
@@ -37,7 +39,12 @@ namespace Mhlabs.WebApi.JsendActionFilter
 
                 if (context.Result != null) return;
 
+
                 context.Result = new OkObjectResult(new { status = "fail", data = failExeption?.FailData });
+
+                var logError = $"[ERROR] Result: {JsonConvert.SerializeObject(failExeption?.FailData)}";
+                Console.WriteLine(logError);
+
                 context.ExceptionHandled = true;
             }
             else if (context.Exception == null)
