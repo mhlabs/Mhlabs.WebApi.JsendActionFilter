@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Mhlabs.WebApi.JsendActionFilter
 {
@@ -7,7 +8,7 @@ namespace Mhlabs.WebApi.JsendActionFilter
         public static void AddJSendResponseFormat(this MvcOptions options)
         {
             options.Filters.Add(new ResponseFilterAttribute());
-            options.Filters.Add(new HandleExcpetionFilterAttribute());
+            options.Filters.Add<HandleExceptionFilterAttribute>();
         }
     }
 }

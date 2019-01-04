@@ -11,7 +11,7 @@ namespace Mhlabs.WebApi.JsendActionFilter
         {
         }
 
-        public ResponseFilterAttribute(string responseFormatHeader = null, string jSendHeaderValue = null)
+        public ResponseFilterAttribute(string responseFormatHeader, string jSendHeaderValue)
         {
             ResponseFormatHeader = responseFormatHeader ?? ResponseFormatHeader;
             JSendHeaderValue = jSendHeaderValue ?? JSendHeaderValue;
