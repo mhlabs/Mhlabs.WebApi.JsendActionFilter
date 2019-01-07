@@ -17,8 +17,7 @@ namespace Mhlabs.WebApi.JsendActionFilter
         public override void OnException(ExceptionContext context)
         {
             base.OnException(context);
-            _logger.LogError(context.Exception, "JSend OnException - Error Message {Message}. Route: {RouteDisplayName}",
-                context?.Exception?.Message, context?.ActionDescriptor?.DisplayName);
+            _logger.LogError(context.Exception, "JSend OnException - Error Message {Message}.", context?.Exception?.Message);
 
             if (!context.HasJSendHeader()) return;
             
