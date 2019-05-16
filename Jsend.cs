@@ -21,15 +21,23 @@ namespace Mhlabs.WebApi.JsendActionFilter
             Fail(controller, new FailReason(code, message));
         }
 
-        public static OkObjectResult Error(this Controller controller, FailReason data)
+        public static ObjectResult Error(this Controller controller, FailReason data)
         {
+            if (!controller.ControllerContext.HasJSendHeader())
+            {
+                return new ObjectResult(data)
+                {
+                    StatusCode = 500
+                };
+            }
+
             var response = new JSendResponse { Status = "fail", Data = data };
             Console.WriteLine($"[ERROR] JSendResponse: {JsonConvert.SerializeObject(response)} {Environment.NewLine}");
 
             return new OkObjectResult(response);
         }
 
-        public static OkObjectResult Error(this Controller controller, string code = null, string message = null)
+        public static ObjectResult Error(this Controller controller, string code = null, string message = null)
         {
             return Error(controller, new FailReason(code, message));
         }
