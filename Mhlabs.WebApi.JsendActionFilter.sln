@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mhlabs.WebApi.JsendActionFilter", "Mhlabs.WebApi.JsendActionFilter.csproj", "{5628FB61-63C3-4F9C-A290-364D79F2F32B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mhlabs.WebApi.JsendActionFilter", "Mhlabs.WebApi.JsendActionFilter\Mhlabs.WebApi.JsendActionFilter.csproj", "{5628FB61-63C3-4F9C-A290-364D79F2F32B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mhlabs.WebApi.JsendActionFilter.Tests", "Mhlabs.WebApi.JsendActionFilter.Tests\Mhlabs.WebApi.JsendActionFilter.Tests.csproj", "{21FAFA23-A41D-4A59-911D-8D5768C369DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5628FB61-63C3-4F9C-A290-364D79F2F32B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5628FB61-63C3-4F9C-A290-364D79F2F32B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5628FB61-63C3-4F9C-A290-364D79F2F32B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21FAFA23-A41D-4A59-911D-8D5768C369DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21FAFA23-A41D-4A59-911D-8D5768C369DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21FAFA23-A41D-4A59-911D-8D5768C369DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21FAFA23-A41D-4A59-911D-8D5768C369DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
