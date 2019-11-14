@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -16,9 +17,9 @@ namespace Mhlabs.WebApi.JsendActionFilter
             throw exception;
         }
 
-        public static void Fail(this Controller controller, string code = null, string message = null)
+        public static void Fail(this Controller controller, string code = null, string message = null, IDictionary<string, object> metadata = null)
         {
-            Fail(controller, new FailReason(code, message));
+            Fail(controller, new FailReason(code, message, metadata));
         }
 
         public static ObjectResult Error(this Controller controller, FailReason data)
