@@ -43,5 +43,26 @@ namespace Mhlabs.WebApi.JsendActionFilter
             return Error(controller, new FailReason(code, message));
         }
 
+        public static ObjectResult ClientError(this Controller controller, FailReason data)
+        {
+            if (!controller.ControllerContext.HasJSendHeader())
+            {
+                return new ObjectResult(data)
+                {
+                    StatusCode = 400
+                };
+            }
+
+            var response = new JSendResponse { Status = "fail", Data = data };
+            Console.WriteLine($"[ERROR] JSendResponse: {JsonConvert.SerializeObject(response)} {Environment.NewLine}");
+
+            return new OkObjectResult(response);
+        }
+
+        public static ObjectResult ClientError(this Controller controller, string code = null, string message = null)
+        {
+            return ClientError(controller, new FailReason(code, message));
+        }
+
     }
 }
