@@ -43,13 +43,13 @@ namespace Mhlabs.WebApi.JsendActionFilter
             return Error(controller, new FailReason(code, message));
         }
 
-        public static ObjectResult ClientError(this Controller controller, FailReason data)
+        public static ObjectResult ClientError(this Controller controller, FailReason data, int statusCode = 400)
         {
             if (!controller.ControllerContext.HasJSendHeader())
             {
                 return new ObjectResult(data)
                 {
-                    StatusCode = 400
+                    StatusCode = statusCode
                 };
             }
 
@@ -59,9 +59,9 @@ namespace Mhlabs.WebApi.JsendActionFilter
             return new OkObjectResult(response);
         }
 
-        public static ObjectResult ClientError(this Controller controller, string code = null, string message = null)
+        public static ObjectResult ClientError(this Controller controller, string code = null, string message = null, int statusCode = 400)
         {
-            return ClientError(controller, new FailReason(code, message));
+            return ClientError(controller, new FailReason(code, message), statusCode);
         }
 
     }
